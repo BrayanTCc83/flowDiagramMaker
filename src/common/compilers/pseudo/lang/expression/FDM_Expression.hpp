@@ -120,6 +120,10 @@ namespace FDM_Expressions{
             */
             virtual bool isTerminal();
             /**
+             * Assign expressions to the restant expression fields.
+            */
+            virtual void AddExpression(Expression *expression);
+            /**
              * Overloads the Right Side operator to make it compatible with expressions.
             */
             friend ostream& operator<<(ostream& output, const Expression& expression);
@@ -198,6 +202,10 @@ namespace FDM_Expressions{
         public:
             TernaryExpression(Expression *expr1, Expression *expr2, Expression *expr3);
             /**
+             * Assign expressions to the restant expression fields.
+            */
+            virtual void AddExpression(Expression *expression);
+            /**
              * Do an interpretation execution of the expression used.
             */
             virtual Expression *Interprete();
@@ -213,6 +221,10 @@ namespace FDM_Expressions{
         public:
             BinaryExpression(Expression *expr1, Expression *expr2);
             /**
+             * Assign expressions to the restant expression fields.
+            */
+            virtual void AddExpression(Expression *expression);
+            /**
              * Do an interpretation execution of the expression used.
             */
             virtual Expression *Interprete();
@@ -226,6 +238,10 @@ namespace FDM_Expressions{
             Expression *expression;
         public:
             UnitaryExpression(Expression *expression);
+            /**
+             * Assign expressions to the restant expression fields.
+            */
+            virtual void AddExpression(Expression *expression);
             /**
              * Do an interpretation execution of the expression used.
             */

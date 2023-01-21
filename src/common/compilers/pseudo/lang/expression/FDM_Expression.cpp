@@ -18,6 +18,8 @@ bool Expression::isTerminal () {
     return false;
 }
 
+void Expression::AddExpression(Expression *expression) {}
+
 TerminalExpression::TerminalExpression(string data) {
     this->data = data;
 }
@@ -42,6 +44,16 @@ TernaryExpression::TernaryExpression(Expression *expr1, Expression *expr2, Expre
     this->expr3 = expr3;
 }
 
+
+void TernaryExpression::AddExpression(Expression *expression) {
+    if(this->expr1 == NULL)
+        this->expr1 = expression;
+    else if(this->expr2 == NULL)
+        this->expr2 = expression;
+    else
+        this->expr3 = expression;
+}
+
 Expression *TernaryExpression::Interprete() {
     this->expr1 = GoDown(this->expr1);
     this->expr2 = GoDown(this->expr2);
@@ -53,12 +65,25 @@ BinaryExpression::BinaryExpression(Expression *expr1, Expression *expr2) {
     this->expr2 = expr2;
 }
 
+
+void BinaryExpression::AddExpression(Expression *expression) {
+    if(this->expr1 == NULL)
+        this->expr1 = expression;
+    else
+        this->expr2 = expression;
+}
+
 Expression *BinaryExpression::Interprete() {
     this->expr1 = GoDown(this->expr1);
     this->expr2 = GoDown(this->expr2);
 }
 
 UnitaryExpression::UnitaryExpression(Expression *expression) {
+    this->expression = expression;
+}
+
+
+void UnitaryExpression::AddExpression(Expression *expression) {
     this->expression = expression;
 }
 
